@@ -39,16 +39,7 @@ class IndexHandler(webapp2.RequestHandler):
         ID = count + 1
         newUser = datastore.Posts(ID=ID, title=title, author=author, content=content)
         newUser.put()
-
-        posts = datastore.Posts.all()
-        postList = []
-        for post in posts:
-            postList.append({'ID': post.ID, 'title': post.title, 'author': post.author, 'timestamp': post.timestamp})
-        template_values = {
-            'postList': postList
-        }
-        template = JINJA_ENVIRONMENT.get_template('templates/index.html')
-        self.response.write(template.render(template_values))
+        self.redirect('/')
 
 
 class PostHandler(webapp2.RequestHandler):
@@ -79,22 +70,4 @@ class PostHandler(webapp2.RequestHandler):
         comment = self.request.get('comment')
         newComment = datastore.Comments(ID=postID, comment=comment, author=author)
         newComment.put()
-
-        p = datastore.Posts.all()
-        c = datastore.Posts.all()
-        comments = []
-        for x in c:
-            if x.ID == postID:
-                comments.append(x)
-        for x in p:
-            if x.ID == postID:
-                template_values = {
-                    'postID': postID,
-                    'postTitle': x.title,
-                    'postAuthor': x.author,
-                    'timestamp': x.timestamp,
-                    'postContent': x.content,
-                    'postComments': comments
-                }
-                template = JINJA_ENVIRONMENT.get_template('templates/post.html')
-                self.response.write(template.render(template_values))
+        self.redirect('/post?id=' + str(postID))

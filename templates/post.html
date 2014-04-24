@@ -5,38 +5,74 @@
     <title>{{ postTitle }} | Chess Masters Club Forum</title>
     <meta name="author" content="Aneesh Neelam (11BCE0260)"/>
     <link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="/foundation/css/foundation.css"/>
+    <script type="text/javascript" src="/foundation/js/vendor/modernizr.js"></script>
 </head>
 <body>
-<div class="header">
-    <h1>Chess Masters Club - Forum</h1>
-</div>
-<div class="Post">
-    <h2> {{ postTitle }} </h2>
-    <h5 class="PostDetails">By </h4>{{ postAuthor }} <br>At {{ timestamp }}</h5>
-
-    <div class="PostComment">
-        <h3>Post Content: </h3>
-        <label>{{ postContent }}</label>
+<nav class="top-bar" data-topbar>
+    <ul class="title-area">
+        <li class="name">
+            <h1><a href="/">Chess Masters Club</a></h1>
+        </li>
+    </ul>
+</nav>
+<div class="row">
+    <div class="row">
+        <h2> {{ postTitle }} </h2>
+    </div>
+    <div class="row">
+        <div class="row large-12 column">
+            <h4>By {{ postAuthor }}</h4>
+        </div>
+        <div class="row large-12 column">
+            <h5> At {{ timestamp }}</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row large-12 columns">
+            <h3>Post Content: </h3>
+        </div>
+        <div class="large-12 columns">
+            <p>{{ postContent }}</p>
+        </div>
     </div>
 </div>
-<div class="Comments">
-    <h3>Comments: </h3>
-    <ul id="PostList">
-        {% for item in postComments %}
-        <li><label>{{ item.comment }}<br>by {{ item.author }}<br>at {{ item.timestamp }}</label></li>
-        {% endfor %}
+<div class="row">
+    <div class="row">
+        <h2>Comments</h2>
+    </div>
+    <ul class="row">
+        <div class="large-12 columns">
+            {% for item in postComments %}
+            <li><label>{{ item.comment }}<br>by {{ item.author }}<br>at {{ item.timestamp }}</label></li>
+            {% endfor %}
+        </div>
     </ul>
 </div>
-<div class="NewComment">
-    <h3>Post New Comment</h3>
-
-    <form action="/post" method="post">
-        <label>Comment: </label><input type="text" name="comment"> <br>
-        <label>Author: </label><input type="text" name="author"> <br>
-
-        <div style="visibility: collapse"><input type="text" value="{{ postID }}" name="id"></div>
-        <input type="submit">
-    </form>
+<div class="row" style="text-align: center">
+    <h2>New Comment</h2>
 </div>
+
+<form action="/post" method="post">
+    <div class="row">
+        <div class="large-12 columns">
+            <label>Post Title
+                <input type="text" name="author" placeholder="Comment Author"/>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
+            <label>Post Content
+                <textarea style="resize: none" name="comment" placeholder="Post Content"></textarea>
+            </label>
+        </div>
+    </div>
+    <input type="text" name="id" value="{{ postID }}" style="visibility: collapse">
+
+    <div class="row" style="text-align: center">
+        <input type="submit" class="button" value="Post">
+    </div>
+</form>
 </body>
 </html>

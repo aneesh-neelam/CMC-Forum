@@ -5,29 +5,57 @@
     <title>User Forum | Chess Masters Club</title>
     <meta name="author" content="Aneesh Neelam (11BCE0260)"/>
     <link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="/foundation/css/foundation.css"/>
+    <script type="text/javascript" src="/foundation/js/vendor/modernizr.js"></script>
 </head>
 <body>
-<div class="header">
-    <h1>Chess Masters Club - Forum</h1>
-</div>
-<div class="Posts">
-    <h3>Posts: </h3>
-    <ul id="PostList">
-        {% for item in postList %}
-        <li><a href="/post?id={{ item.ID }}">{{ item.title }}</a> <label>by {{ item.author }} at {{ item.timestamp
-            }}</label></li>
-        {% endfor %}
+<nav class="top-bar" data-topbar>
+    <ul class="title-area">
+        <li class="name">
+            <h1><a href="/">Chess Masters Club</a></h1>
+        </li>
+    </ul>
+</nav>
+<div class="row">
+    <div class="row">
+        <h2>Posts</h2>
+    </div>
+    <ul class="row">
+        <div class="large-12 columns">
+            {% for item in postList %}
+            <li><a href="/post?id={{ item.ID }}">{{ item.title }}</a> <label>by {{ item.author }} at {{ item.timestamp
+                }}</label></li>
+            {% endfor %}
+        </div>
     </ul>
 </div>
-<div class="NewPost">
-    <h3>New Post</h3>
-
-    <form action="/" method="post">
-        <label>Post Title: </label><input type="text" name="title"> <br>
-        <label>Author: </label><input type="text" name="author"> <br>
-        <label>Post Content: </label> <input type="text" name="content"> <br>
-        <input type="submit">
-    </form>
+<div class="row" style="text-align: center">
+    <h2>New Post</h2>
 </div>
+
+<form action="/" method="post">
+    <div class="row">
+        <div class="large-6 columns">
+            <label>Post Title
+                <input type="text" name="title" placeholder="Post Title"/>
+            </label>
+        </div>
+        <div class="large-6 columns">
+            <label>Post Author
+                <input type="text" name="author" placeholder="Post Author"/>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
+            <label>Post Content
+                <textarea style="resize: none" name="content" placeholder="Post Content"></textarea>
+            </label>
+        </div>
+    </div>
+    <div class="row" style="text-align: center">
+        <input type="submit" class="button" value="Post">
+    </div>
+</form>
 </body>
 </html>

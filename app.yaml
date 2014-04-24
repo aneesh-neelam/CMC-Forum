@@ -8,11 +8,21 @@ handlers:
 - url: /images
   static_dir: images
 
+- url: /foundation
+  static_dir: foundation
+
+- url: /stylesheet
+  static_dir: stylesheet
+
+- url: /javascript
+  static_dir: javascript
+
 - url: .*
   script: main.app
 
 libraries:
 - name: webapp2
   version: latest
+
 - name: jinja2
   version: latest
