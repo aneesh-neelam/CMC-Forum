@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>{{ postTitle }} | Chess Masters Club Forum</title>
+    <meta name="author" content="Aneesh Neelam (11BCE0260)"/>
+    <link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
+</head>
+<body>
+<div class="header">
+    <h1>Chess Masters Club - Forum</h1>
+</div>
+<div class="Post">
+    <h2> {{ postTitle }} </h2>
+    <h5 class="PostDetails">By </h4>{{ postAuthor }} <br>At {{ timestamp }}</h5>
+
+    <div class="PostComment">
+        <h3>Post Content: </h3>
+        <label>{{ postContent }}</label>
+    </div>
+</div>
+<div class="Comments">
+    <h3>Comments: </h3>
+    <ul id="PostList">
+        {% for item in postComments %}
+        <li><label>{{ item.comment }}<br>by {{ item.author }}<br>at {{ item.timestamp }}</label></li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="NewComment">
+    <h3>Post New Comment</h3>
+
+    <form action="/post" method="post">
+        <label>Comment: </label><input type="text" name="comment"> <br>
+        <label>Author: </label><input type="text" name="author"> <br>
+
+        <div style="visibility: collapse"><input type="text" value="{{ postID }}" name="id"></div>
+        <input type="submit">
+    </form>
+</div>
+</body>
+</html>

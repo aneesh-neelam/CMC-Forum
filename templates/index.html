@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>User Forum | Chess Masters Club</title>
+    <meta name="author" content="Aneesh Neelam (11BCE0260)"/>
+    <link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
+</head>
+<body>
+<div class="header">
+    <h1>Chess Masters Club - Forum</h1>
+</div>
+<div class="Posts">
+    <h3>Posts: </h3>
+    <ul id="PostList">
+        {% for item in postList %}
+        <li><a href="/post?id={{ item.ID }}">{{ item.title }}</a> <label>by {{ item.author }} at {{ item.timestamp
+            }}</label></li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="NewPost">
+    <h3>New Post</h3>
+
+    <form action="/" method="post">
+        <label>Post Title: </label><input type="text" name="title"> <br>
+        <label>Author: </label><input type="text" name="author"> <br>
+        <label>Post Content: </label> <input type="text" name="content"> <br>
+        <input type="submit">
+    </form>
+</div>
+</body>
+</html>
